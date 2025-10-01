@@ -1,8 +1,12 @@
 <main class="principal">
   <h2 class="principal__titulo">Dados do cadastro</h2>
 
+  <!-- Formulario principal -->
   <form class="principal__formulario" id="formulario" #f="ngForm" (ngSubmit)="cadastrar(f)">
+    <!-- Secao: Dados pessoais -->
     <h3 class="principal__subtitulo">Dados pessoais</h3>
+
+    <!-- Campo: Nome completo -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
       <input name="nome" id="nome" class="campo__escrita" ngModel required minlength="2">
@@ -12,82 +16,112 @@
         <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['minlength']">No minmo 2 caracteres.</span>
       </div>
     </div>
+
     <div class="formulario__dupla">
+      <!-- Campo: Data de nascimento -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input name="nascimento" id="nascimento" type="date" class="campo__escrita"/>
+        <input name="nascimento" id="nascimento" type="date" class="campo__escrita" ngModel/>
       </div>
+
+      <!-- Campo: Telefone para contato -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
-        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita"/>
+        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita" 
+        ngModel required pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"/>
+
+        <div *ngIf="(f.controls['telefone']?.invalid && f.controls['telefone']?.touched) || f.controls['telefone']?.dirty">
+          <span class="erro__texto" *ngIf="f.controls['telefone']?.errors?.['required']">Preencha seu telefone no campo acima.</span>
+          <span class="erro__texto" *ngIf="f.controls['telefone']?.errors?.['pattern']">O campo de telefone está incorreto</span>
+        </div>
       </div>
     </div>
+
+    <!-- Campo: E-mail -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita"/>
+      <input name="email" id="email" type="email" class="campo__escrita" ngModel required email/>
+
+      <div *ngIf="(f.controls['email']?.invalid && f.controls['email']?.touched) || f.controls['email']?.dirty">
+        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['required']">
+        Preencha seu email no campo acima.</span>
+        <span class="erro__texto" *ngIf="f.controls['email']?.errors">
+        O campo de email deve seguir este padrão: "exemplo@gmail.com"</span>
+      </div>
     </div>
 
+    <!-- Secao: Endereco -->
+    <h3 class="principal__subtitulo">Endere??o</h3>
 
-    <h3 class="principal__subtitulo">Endereço</h3>
-
+    <!-- Campo: CEP -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
       <input name="cep" id="cep" class="campo__escrita" />
       <div id="erro"></div>
     </div>
 
+    <!-- Campo: Endereco -->
     <div class="formulario__campo">
-      <label class="campo__etiqueta" for="endereco">Endereço</label>
+      <label class="campo__etiqueta" for="endereco">Endere??o</label>
       <input name="endereco" id="endereco" class="campo__escrita" />
     </div>
+
     <div class="formulario__dupla">
+      <!-- Campo: Numero do endereco -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="numero">Numero</label>
         <input name="numero" id="numero" class="campo__escrita" />
       </div>
+
+      <!-- Campo: Complemento do endereco -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="complemento">Complemento</label>
         <input name="complemento" id="complemento" class="campo__escrita" />
       </div>
     </div>
+
+    <!-- Campo: Bairro -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="bairro">Bairro</label>
       <input name="bairro" id="bairro" class="campo__escrita" />
     </div>
+
     <div class="formulario__dupla">
+      <!-- Campo: Cidade -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="cidade">Cidade</label>
         <input name="cidade" id="cidade" class="campo__escrita" />
       </div>
 
+      <!-- Campo: UF / Estado -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="estado">UF</label>
         <select id="estado" name="estado" class="campo__escrita">
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
+          <option value="AP">Amapo</option>
           <option value="AM">Amazonas</option>
           <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
+          <option value="CE">Cearo</option>
           <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
+          <option value="ES">Esp??rito Santo</option>
+          <option value="GO">Goios</option>
+          <option value="MA">Maranhuo</option>
           <option value="MT">Mato Grosso</option>
           <option value="MS">Mato Grosso do Sul</option>
           <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
+          <option value="PA">Paro</option>
+          <option value="PB">Para??ba</option>
+          <option value="PR">Parano</option>
           <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
+          <option value="PI">Piau??</option>
           <option value="RJ">Rio de Janeiro</option>
           <option value="RN">Rio Grande do Norte</option>
           <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
+          <option value="RO">Rond??nia</option>
           <option value="RR">Roraima</option>
           <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
+          <option value="SP">Suo Paulo</option>
           <option value="SE">Sergipe</option>
           <option value="TO">Tocantins</option>
           <option value="EX">Estrangeiro</option>
@@ -95,6 +129,8 @@
       </div>
 
     </div>
-    <button type="submit" class="formulario__botao">Enviar formulário</button>
-    </form>
+
+    <!-- Botao de envio do formulario -->
+    <button type="submit" class="formulario__botao">Enviar formulorio</button>
+  </form>
 </main>
