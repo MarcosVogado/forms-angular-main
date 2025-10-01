@@ -9,7 +9,17 @@
     <!-- Campo: Nome completo -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input name="nome" id="nome" type="text" class="campo__escrita" ngModel required minlength="2" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$">
+      <input 
+      name="nome" 
+      id="nome" 
+      type="text" 
+      class="campo__escrita" 
+      ngModel 
+      required 
+      minlength="2" 
+      pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$"
+      #nome="ngModel"
+      >
 
       <div *ngIf="(f.controls['nome']?.invalid && f.controls['nome']?.touched) || f.controls['nome']?.dirty">
         <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']">Preencha seu nome no campo acima.</span>
