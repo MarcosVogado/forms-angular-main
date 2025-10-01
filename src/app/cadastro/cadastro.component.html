@@ -21,10 +21,10 @@
       #nome="ngModel"
       >
 
-      <div *ngIf="(f.controls['nome']?.invalid && f.controls['nome']?.touched) || f.controls['nome']?.dirty">
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']">Preencha seu nome no campo acima.</span>
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['minlength']">No minimo 2 caracteres.</span>
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['pattern']">Use apenas letras e acentos.</span>
+      <div *ngIf="(nome?.invalid && nome?.touched) || nome?.dirty">
+        <app-mensagem *ngIf="nome?.errors?.['required']" mensagem="Preencha seu nome no campo acima."></app-mensagem>
+        <app-mensagem *ngIf="nome?.errors?.['minlength']" mensagem="No minimo 2 caracteres."></app-mensagem>
+        <app-mensagem *ngIf="nome?.errors?.['pattern']" mensagem="Use apenas letras e acentos."></app-mensagem>
       </div>
     </div>
 
