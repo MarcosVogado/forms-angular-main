@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MensagemComponent implements OnInit {
 
+  //O @Input fará com que o componente receba dados de outro componente. 
   @Input() mensagem = '';
 
   constructor() { }
