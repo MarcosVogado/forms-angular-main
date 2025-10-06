@@ -17,7 +17,7 @@
       ngModel 
       required 
       minlength="2" 
-      pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$"
+      pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\\s-]+$"
       #nome="ngModel"
       >
 
@@ -109,11 +109,11 @@
       pattern="^(\d{5})(-?\d{3})$"
       minlength="8"
       maxlength="9"
-      (blur)="consultaCEP($event)"
+      (blur)="consultaCEP($event, f)"
       />
       <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
         <app-mensagem *ngIf="cep?.errors?.['required']" mensagem="O campo de cep é obrigatório."></app-mensagem>
-        <app-mensagem *ngIf="cep?.errors?.['required']" mensagem="O campo de cep deve seguir este exemplo: XXXXX-XXX"></app-mensagem>
+        <app-mensagem *ngIf="cep?.errors?.['pattern']" mensagem="O campo de cep deve seguir este exemplo: XXXXX-XXX"></app-mensagem>
       </div>
       <div id="erro"></div>
     </div>
@@ -127,10 +127,10 @@
       class="campo__escrita" 
       ngModel
       required
-      #endereco="ngModel"
+      #logradouro="ngModel"
       />
-      <div *ngIf="(endereco?.invalid && endereco?.touched) || endereco?.dirty">
-        <app-mensagem *ngIf="endereco?.errors?.['required']" mensagem="O campo de endereco é obrigatório."></app-mensagem>
+      <div *ngIf="(logradouro?.invalid && logradouro?.touched) || logradouro?.dirty">
+        <app-mensagem *ngIf="logradouro?.errors?.['required']" mensagem="O campo de logradouro é obrigatório."></app-mensagem>
       </div>
     </div>
 
@@ -141,20 +141,22 @@
         <input 
         name="numero" 
         id="numero" 
-        class="campo__escrita" 
+        class="campo__escrita"
         ngModel
         required
-        #numero="ngModel"
         />
-        <div *ngIf="(numero?.invalid && numero?.touched) || numero?.dirty">
-          <app-mensagem *ngIf="numero?.errors?.['required']" mensagem="O campo de número é obrigatório."></app-mensagem>
-        </div>
       </div>
 
       <!-- Campo: Complemento do endereco -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="complemento">Complemento</label>
-        <input name="complemento" id="complemento" class="campo__escrita" />
+        <input 
+        name="complemento" 
+        id="complemento" 
+        class="campo__escrita"
+        ngModel 
+        #complemento="ngModel"
+        />
       </div>
     </div>
 
@@ -184,14 +186,21 @@
         class="campo__escrita" 
         ngModel
         required
-        #cidade="ngModel"
+        #localidade="ngModel"
         />
       </div>
 
       <!-- Campo: UF / Estado -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="estado">UF</label>
-        <select id="estado" name="estado" class="campo__escrita">
+        <select 
+        id="estado" 
+        name="estado" 
+        class="campo__escrita"
+        ngModel
+        required
+        #uf="ngModel"
+        >
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>
