@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MensagemComponent } from './components/mensagem/mensagem.component';
 import { MaiorIdadeDirective } from './directives/maior-idade.directive';
 import { from } from 'rxjs';
+import { ValidandoCepDirective } from './directives/validando-cep.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { from } from 'rxjs';
     CadastroComponent, 
     SucessoCadastroComponent, 
     MensagemComponent, 
-    MaiorIdadeDirective
+    MaiorIdadeDirective, ValidandoCepDirective
   ],
   imports: [
     BrowserModule, 
