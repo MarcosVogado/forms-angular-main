@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class ConsultaCepService {
 
-  url_API = 'https://viacep.com.br/ws/01001000/json/';
+  url_API = 'https://viacep.com.br/ws/';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getConsultaCep(cep: string){
+    return this.http.get(`${this.url_API}${cep}/json`)
+  }
 }

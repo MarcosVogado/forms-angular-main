@@ -109,6 +109,7 @@
       pattern="^(\d{5})(-?\d{3})$"
       minlength="8"
       maxlength="9"
+      (blur)="consultaCEP($event)"
       />
       <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
         <app-mensagem *ngIf="cep?.errors?.['required']" mensagem="O campo de cep é obrigatório."></app-mensagem>
